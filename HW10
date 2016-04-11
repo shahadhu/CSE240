@@ -1,0 +1,60 @@
+;Question 1
+(display "1.1")
+(newline)
+(- (+ 8 3) 1)
+(display "1.2")
+(newline)
+(+(-(+ 5 2) 3)6)
+(display "1.3")
+(newline)
+(+(+(* 3 4)2)(* 8 7))
+(display "1.4")
+(newline)
+(* (/ 10 2)  (+ (* 6 2) (- 5 7)))
+(display "1.5")
+(newline)
+(* (* (* 10 10) (/ (+ (- 4 2) (+ 6 2) )  (+ 6 4)) )   (+(- 4 2) (+ 6 2) ) )
+(display "2")
+(newline)
+(define ten 10) ;defining ten to hold the value 10
+(define four 4)  ;defining four to hold the value 4
+(define two 2)    ;defining two to hold the value 2
+(define six 6)     ;defining six to hold the value 6
+(* (* (* ten ten) (/ (+ (- four two) (+ six two) )  (+ six four)) )   (+(- four two) (+ six two) ) ) 
+
+;Question 3
+; calculates the area of a triangle 
+(newline)
+(define (triArea base height)
+ (* (* base 0.5) height) 
+)
+
+;Question 4
+;prints the triangle volume by taking a value and displaying it
+(newline)
+(define (printVal value)
+  (display value))
+
+;computes the triangle Volume 
+(define (triVol base height depth )
+(*  (triArea base height) depth )
+ )
+
+;Using the above two methods, first for taking input and computing the triangle volume, second for printing the result
+printVal(triVol (read) (read) (read))
+
+;Question 5
+;takes input from user then calculates the difference between two triangles' volumes
+(newline)
+ (define (diffVol v1 v2)
+        (- v1 v2 )
+   )
+ (diffVol (triVol (read) (read) (read))
+    (triVol (read) (read) (read))
+  )
+
+;Question 6
+; Same as triArea but using let-form
+ (newline)
+ (let TriAreaLet ( (base 4 ) (height 6))
+   (* base height))
