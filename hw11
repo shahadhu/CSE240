@@ -1,0 +1,65 @@
+;Question 1
+(define (Ackermann s t) ;Size-n problem
+  (cond
+    ((= 0 s) (+ t 1)) ;stopping cond
+    ((and(= 0 t)(> s 0))  (Ackermann (- s 1) 1)) ;Size-m problem
+      (else (Ackermann (- s 1) (Ackermann s (- t 1)))))) ;Size-m problems
+
+;Question 2
+(define (len lst)
+ (cond ((null? lst) 0) ;if list is empty then return 0
+ (else (+ 1 (len (cdr lst))))))
+
+;Question 3
+; 3.1 named procedure
+(define (first-last lst)
+  (define (last-element lst)
+(cond ((null? (cdr lst)) (car lst))  ;checking if the list has more than one element
+        (else (last-element (cdr lst))))) ;if not, then it calls the function recursivly and the list minus first element is passed to it
+(list (car lst) (last-element lst))) ;building a list from 2 lists
+
+;3.2 unnamed procedure
+(define first-last
+  (lambda(lst) ; unnamed proceducre 
+     (define last-element(lambda(lst)  
+      (cond ((null? (cdr lst)) (car lst)) ;if list has more than one element
+            (else (last-element (cdr lst))))))
+(list (car lst) (last-element lst)))) 
+
+;Question 4
+(define  (first-n lst) 
+ (define n (read)) ; reading from user the number of elements 
+  (first-helper lst n)) ; calling first-helper
+
+(define (first-helper lst n)
+  (cond ((= n 0) '()) ; if n = 0 then return '()
+        (else (cons (car lst) (first-helper (cdr lst) (- n 1)))))  ) ;if n != 0 then the first element is joined using cons with a recursive call to first-helper but this time passing the list minus the first element
+
+;Question 5
+(define  (alternate lst1 lst2 lst3)
+  (cond
+    ((or (null? lst1) (null? lst2) (null? lst3)) '() ) ;if one of the lists are empty return '()
+    (else (cons (car lst1) ;takes first element of 1st list
+          (cons (car lst2) ;takes first element of 2nd list
+                (cons (car lst3) ;takes first element of 3rd list
+(alternate (cdr lst1)(cdr lst2)(cdr lst3)))))))) ;recursive call passing each list minus the first element
+
+;Question 6
+(define (pairs lst1 lst2)
+  (cond
+   ( (or (null? lst1) (null? lst2)) '()) ;if one of the lists are empty return '()
+   (else (cons (list (car lst1) (car lst2)) ;creating a list out of 2 pairs
+          (pairs (cdr lst1) (cdr lst2)))))) ; recursive call to create pairs with the rest of elements of the lists
+
+;Question 7 
+(define (average lst)
+   (if (null? lst)
+        (display "empty list.") ;if the list is empty print a message 
+    (/ (average-help lst) (length lst)))) ;calculating averge. average-help is being called with a list passed to it
+
+(define (average-help lst)
+    (cond
+     ((null? lst)
+        0)
+        (else (+ (car lst) (average-help (cdr lst)))))) ;calculating the sum 
+  
